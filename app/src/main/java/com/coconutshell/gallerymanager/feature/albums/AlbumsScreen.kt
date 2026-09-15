@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -21,11 +22,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -38,10 +35,12 @@ import com.coconutshell.gallerymanager.shared.ui.components.PrimaryDestination
 import com.coconutshell.gallerymanager.shared.ui.components.SectionHeader
 import androidx.compose.ui.platform.LocalContext
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AlbumsScreen(
     onHome: () -> Unit,
-    onBrowse: () -> Unit, onOpenAlbum: (Long) -> Unit = {},
+    onBrowse: () -> Unit,
+    onOpenAlbum: (Long) -> Unit = {},
     vm: AlbumsViewModel = viewModel(factory = AlbumsViewModelFactory())
 ) {
     val state by vm.uiState.collectAsStateWithLifecycle()
@@ -69,15 +68,15 @@ fun AlbumsScreen(
         }
     ) { padding ->
         LazyColumn(
-            Modifier.fillMaxSize().padding(padding).padding(horizontal = 20.dp),
+            Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .padding(horizontal = 20.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            item {
-                Text("Albums", style = MaterialTheme.typography.headlineMedium)
-            }
-            item {
-                SectionHeader("Device Albums")
-            }
+            item { Text("Albums", style = MaterialTheme.typography.headlineMedium) }
+            item { SectionHeader("Device Albums") }
+
             if (state.deviceFolders.isEmpty()) {
                 item {
                     Text(
@@ -87,9 +86,14 @@ fun AlbumsScreen(
                 }
             } else {
                 items(state.deviceFolders, key = { "folder-${it.id}" }) { folder ->
-                    GlassCard(Modifier.fillMaxWidth(), onClick = { onOpenAlbum(album.id) }) {
+                    GlassCard(
+                        Modifier.fillMaxWidth(),
+                        onClick = { onOpenAlbum(folder.id) }
+                    ) {
                         Row(
-                            Modifier.fillMaxWidth().padding(14.dp),
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(14.dp),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Column {
@@ -105,6 +109,7 @@ fun AlbumsScreen(
             }
 
             item { SectionHeader("My Albums") }
+
             if (state.myAlbums.isEmpty()) {
                 item {
                     Text(
@@ -114,9 +119,14 @@ fun AlbumsScreen(
                 }
             } else {
                 items(state.myAlbums, key = { "album-${it.id}" }) { album ->
-                    GlassCard(Modifier.fillMaxWidth(), onClick = { onOpenAlbum(album.id) }) {
+                    GlassCard(
+                        Modifier.fillMaxWidth(),
+                        onClick = { onOpenAlbum(album.id) }
+                    ) {
                         Row(
-                            Modifier.fillMaxWidth().padding(14.dp),
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(14.dp),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Column(Modifier.weight(1f)) {
@@ -133,6 +143,7 @@ fun AlbumsScreen(
                     }
                 }
             }
+
             state.error?.let { message ->
                 item { Text(message, color = MaterialTheme.colorScheme.error) }
             }
@@ -211,6 +222,7 @@ private fun AlbumActionsDialog(
     onTogglePin: () -> Unit
 ) {
     var rename by remember { mutableStateOf(false) }
+
     if (rename) {
         AlbumNameDialog(
             title = "Rename album",
@@ -221,6 +233,7 @@ private fun AlbumActionsDialog(
         )
         return
     }
+
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(album.name) },
