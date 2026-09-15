@@ -10,7 +10,16 @@ import kotlinx.coroutines.flow.Flow
 interface TrashDao {
     @Query("SELECT * FROM trash ORDER BY deletedAtEpochMillis DESC")
     fun observeAll(): Flow<List<TrashEntity>>
-    @Upsert suspend fun upsert(item: TrashEntity)
-    @Query("SELECT * FROM trash") suspend fun getAllOnce(): List<TrashEntity>\n    @Query("DELETE FROM trash WHERE id=:id") suspend fun delete(id: Long)
-    @Query("DELETE FROM trash WHERE deletedAtEpochMillis < :cutoff") suspend fun deleteOlderThan(cutoff: Long)
+
+    @Upsert
+    suspend fun upsert(item: TrashEntity)
+
+    @Query("SELECT * FROM trash")
+    suspend fun getAllOnce(): List<TrashEntity>
+
+    @Query("DELETE FROM trash WHERE id = :id")
+    suspend fun delete(id: Long)
+
+    @Query("DELETE FROM trash WHERE deletedAtEpochMillis < :cutoff")
+    suspend fun deleteOlderThan(cutoff: Long)
 }
