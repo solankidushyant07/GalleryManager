@@ -47,6 +47,7 @@ class TrashService(
                 File(it.backupPath).delete()
                 dao.delete(id)
             }
+            Unit
         }
     }
 
@@ -60,23 +61,41 @@ class TrashService(
 
     suspend fun restore(id: Long): Result<String> = withContext(Dispatchers.IO) {
         runCatching {
-            val item = dao.getAllOnce().firstOrNull { it.id == id } ?: error("Trash item not found.")
-            val collection = if (item.mimeType.startsWith("video/")) MediaStore.Video.Media.EXTERNAL_CONTENT_URI else MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            val item = dao.getAllOnce().firstOrNull { it.id == id }
+                ?: error("Trash item not found.")
+            val collection =
+                if (item.mimeType.startsWith("video/")) MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+                else MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+
             val values = ContentValues().apply {
                 put(MediaStore.MediaColumns.DISPLAY_NAME, item.originalName)
                 put(MediaStore.MediaColumns.MIME_TYPE, item.mimeType)
-                if (android.os.Build.VERSION.SDK_INT >= 29 && item.originalRelativePath != null)
+                if (android.os.Build.VERSION.SDK_INT >= 29 && item.originalRelativePath != null) {
                     put(MediaStore.MediaColumns.RELATIVE_PATH, item.originalRelativePath)
-                if (android.os.Build.VERSION.SDK_INT >= 29) put(MediaStore.MediaColumns.IS_PENDING, 1)
+                }
+                if (android.os.Build.VERSION.SDK_INT >= 29) {
+                    put(MediaStore.MediaColumns.IS_PENDING, 1)
+                }
             }
-            val uri = resolver.insert(collection, values) ?: error("Unable to recreate media.")
+
+            val uri = resolver.insert(collection, values)
+                ?: error("Unable to recreate media.")
+
             try {
                 File(item.backupPath).inputStream().use { input ->
                     resolver.openOutputStream(uri)?.use { output -> input.copyTo(output) }
                         ?: error("Unable to write restored media.")
                 }
-                if (android.os.Build.VERSION.SDK_INT >= 29)
-                    resolver.update(uri, ContentValues().apply { put(MediaStore.MediaColumns.IS_PENDING, 0) }, null, null)
+                if (android.os.Build.VERSION.SDK_INT >= 29) {
+                    resolver.update(
+                        uri,
+                        ContentValues().apply {
+                            put(MediaStore.MediaColumns.IS_PENDING, 0)
+                        },
+                        null,
+                        null
+                    )
+                }
                 File(item.backupPath).delete()
                 dao.delete(id)
                 uri.toString()
@@ -87,4 +106,11 @@ class TrashService(
         }
     }
 }
-data class TrashCandidate(val uri: String, val name: String, val mimeType: String, val relativePath: String?, val sizeBytes: Long)
+
+data class TrashCandidate(
+    val uri: String,
+    val name: String,
+    val mimeType: String,
+    val relativePath: String?,
+    val sizeBytes: Long
+)
