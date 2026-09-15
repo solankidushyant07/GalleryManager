@@ -28,17 +28,16 @@ jobs:
         with:
           gradle-version: "8.10.2"
 
-      # Do not let setup-android install the obsolete SDK package named "tools".
       - name: Set up Android SDK
         uses: android-actions/setup-android@v4
         with:
           packages: ""
 
-      - name: Install required Android SDK packages
+      - name: Install Android SDK packages
         shell: bash
         run: |
           set -euo pipefail
-          sdkmanager --sdk_root="${ANDROID_SDK_ROOT}" "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+          sdkmanager --sdk_root="${ANDROID_SDK_ROOT}"             "platform-tools"             "platforms;android-35"             "build-tools;35.0.0"
           yes | sdkmanager --sdk_root="${ANDROID_SDK_ROOT}" --licenses >/dev/null || true
 
       - name: Show toolchain
