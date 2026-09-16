@@ -43,8 +43,8 @@ android {
 }
 
 androidComponents {
-    onVariants(selector().withBuildType("debug")) {
-        outputs.forEach { output ->
+    onVariants(selector().withBuildType("debug")) { variant ->
+        variant.outputs.forEach { output ->
             output.outputFileName.set("gallerymanager.apk")
         }
     }
