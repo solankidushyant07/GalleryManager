@@ -7,7 +7,9 @@
     <application
         android:name=".GalleryManagerApplication"
         android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
         android:label="Gallery Manager"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GalleryManager">
         <activity
