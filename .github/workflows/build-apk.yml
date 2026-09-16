@@ -91,6 +91,14 @@ jobs:
           set -o pipefail
           gradle --no-daemon assembleDebug --stacktrace 2>&1 | tee ci-diagnostics/build.log
 
+      - name: Prepare renamed APK artifact
+        if: steps.apk.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ci-artifacts
+          cp app/build/outputs/apk/debug/app-debug.apk ci-artifacts/gallerymanager.apk
+
       - name: Collect generated Gradle reports
         if: always()
         shell: bash
@@ -118,7 +126,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: GalleryManager-debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+          path: ci-artifacts/gallerymanager.apk
           if-no-files-found: error
           retention-days: 14
 
