@@ -1,0 +1,1 @@
+(function(G){G.SettingsService=class{constructor(r){this.r=r}get(){return this.r.get()}set(k,v){const s=this.r.set(k,v);G.appState.patch({gridColumns:s.gridColumns,sort:s.sort,theme:s.theme});return s}reset(){return this.r.reset()}}})(window.GalleryManager=window.GalleryManager||{});

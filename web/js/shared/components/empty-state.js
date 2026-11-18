@@ -1,0 +1,1 @@
+(function(G){G.EmptyState=function(title,text){return `<div class="empty-state"><div class="empty-icon">⌁</div><h3>${G.escape(title||'Nothing here yet')}</h3><p>${G.escape(text||'')}</p></div>`}})(window.GalleryManager=window.GalleryManager||{});

@@ -1,0 +1,1 @@
+(function(G){G.events={emit(name,detail){document.dispatchEvent(new CustomEvent(`gm:${name}`,{detail}))},on(name,fn){document.addEventListener(`gm:${name}`,fn)}}})(window.GalleryManager=window.GalleryManager||{});

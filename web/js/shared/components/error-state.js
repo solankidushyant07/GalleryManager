@@ -1,0 +1,1 @@
+(function(G){G.ErrorState=function(title,text){return `<div class="state-block error"><h3>${G.escape(title||'Something went wrong')}</h3><p>${G.escape(text||'Please try again.')}</p></div>`}})(window.GalleryManager=window.GalleryManager||{});

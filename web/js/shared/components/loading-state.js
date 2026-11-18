@@ -1,0 +1,1 @@
+(function(G){G.LoadingState=function(title='Loading…'){return `<div class="state-block"><div class="spinner"></div><h3>${G.escape(title)}</h3></div>`}})(window.GalleryManager=window.GalleryManager||{});

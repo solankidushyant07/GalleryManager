@@ -1,0 +1,1 @@
+(function(G){G.FavoriteService=class{constructor(r){this.r=r}async list(){const a=await this.r.list({favorites:true});return a.filter(x=>x.favorite)}async toggle(ids,value){return this.r.setFavorite(ids,value)}}})(window.GalleryManager=window.GalleryManager||{});

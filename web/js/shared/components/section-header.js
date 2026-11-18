@@ -1,0 +1,1 @@
+(function(G){G.SectionHeader=function(title,action='',handler=''){return `<div class="section-header"><h2>${G.escape(title)}</h2>${action?`<button class="text-btn" data-action="${handler}">${G.escape(action)}</button>`:''}</div>`}})(window.GalleryManager=window.GalleryManager||{});

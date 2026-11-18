@@ -1,0 +1,1 @@
+(function (G) { G.contracts = G.contracts || {}; G.contracts.album = ['list','get','create','rename','delete','addMembers','removeMembers','togglePin','setCover']; })(window.GalleryManager = window.GalleryManager || {});
