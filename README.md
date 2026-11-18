@@ -1,54 +1,52 @@
-# Gallery Manager
+# Gallery Manager — Web Migration
 
-Gallery Manager is an Android image/video gallery manager built from the supplied UI designs and the reconciled implementation plan.
+This is the first web-first implementation pass for GalleryManager.
 
-## Build on GitHub
+## Run
 
-The repository includes a GitHub Actions workflow at `.github/workflows/build-apk.yml`.
+Open `web/index.html` in Acode/browser. The browser build uses the deterministic sample runtime by default and requires no network assets.
 
-It runs on:
-- pushes to `main`
-- pull requests
-- manual **Run workflow**
+There are 30 local PNG sample media assets under `assets/sample-media/`.
 
-The workflow:
-1. checks out the repository;
-2. installs JDK 17;
-3. provisions Gradle 8.10.2;
-4. provisions Android SDK/API 35;
-5. runs `testDebugUnitTest` and `lintDebug`;
-6. builds the debug APK;
-7. uploads the APK as the `GalleryManager-debug-apk` workflow artifact.
+## Architecture
 
-## Downloading the APK
+`feature → application service → contract/runtime adapter`
 
-After a successful workflow run, open the run in GitHub and download the **GalleryManager-debug-apk** artifact.
+The default runtime is the sample adapter. An Android package can select the Android adapter with:
 
-## Product decisions
+```text
+?runtime=android
+```
 
-The project records the locked product decisions in `docs/PHASE_0_DECISIONS.md` and `docs/PRODUCT_DECISIONS.md`.
+or by setting `window.GALLERY_RUNTIME = "android"` before bootstrap.
 
-Key decisions include:
-- Android 10+
-- `com.coconutshell.gallerymanager`
-- MediaStore for public media
-- virtual My Albums
-- centralized file operations with explicit conflict handling and Undo
-- 30-day Trash
-- Favorites as a virtual collection
-- broad image/video support
-- non-destructive editing
-- editable compositions
-- Private as protected app-private encrypted storage, isolated from normal/system gallery
+The Android adapter intentionally contains only the JS/native boundary; the actual bridge names are the contract to be implemented by the Android host.
 
-## Scope
+## Product boundaries preserved
 
-Images and videos only. Document/ebook viewing is intentionally out of scope.
+- Home, Albums, and Browse remain distinct.
+- My Albums are virtual membership collections.
+- Favorites are virtual.
+- Trash is a separate lifecycle with restore/permanent delete.
+- Private is a separate protected boundary.
+- Search is a feature.
+- Editor and Composition are separate workspaces.
+- `index.html` remains the document shell.
 
-## Local build
+## Development-only note
 
-A local Android Studio environment with JDK 17, Android SDK API 35, and Gradle 8.10.2 is recommended. The GitHub workflow is the authoritative CI build until local/device verification is available.
+The browser Private runtime is a functional simulation for UI/application development. It is **not** a security boundary and must never be treated as production private storage. Production Private security remains Android-owned, as required by the migration architecture.
 
-## Current implementation status
+## No-build workflow
 
-See `docs/IMPLEMENTATION_STATUS.md` for the current feature and verification status.
+The web tree deliberately uses classic script files instead of ES-module imports so a directly opened local `index.html` can run in environments that restrict `file://` module imports.
+
+
+## Home screen reference update
+
+The Home feature is implemented in:
+- `js/features/home/home-screen.js`
+- `css/features/home.css`
+- `assets/home-wallpaper.svg`
+
+The Home surface follows the supplied mobile reference: greeting/settings header, translucent search, 2x2 quick-access cards, horizontally swipeable pinned folders with folder names below their sample covers, horizontally swipeable recent media, and persistent bottom navigation.
