@@ -13,6 +13,7 @@ export default [
     },
     rules: {
       ...js.configs.recommended.rules,
+      "no-empty": ["error", { allowEmptyCatch: true }],
       "no-unused-vars": ["warn", { args: "none", caughtErrors: "none" }],
       "no-eval": "error",
       "no-implied-eval": "error",

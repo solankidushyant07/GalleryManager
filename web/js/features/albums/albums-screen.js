@@ -273,17 +273,17 @@
         return;
       }
       if(action==='view'){
-        return G.dialog({
+        const d=G.dialog({
           title:'View',
           body:`<div class="choice-list">
-            <button data-albums-view="grid">Grid view<span>${albumView==='grid'?'✓':''}</span></button>
-            <button data-albums-view="list">List view<span>${albumView==='list'?'✓':''}</span></button>
-            <button data-albums-view="large">Large view<span>${albumView==='large'?'✓':''}</span></button>
+            <button data-albums-view="grid" class="${albumView==='grid'?'chosen':''}">Grid view<span>${albumView==='grid'?'✓':''}</span></button>
+            <button data-albums-view="list" class="${albumView==='list'?'chosen':''}">List view<span>${albumView==='list'?'✓':''}</span></button>
+            <button data-albums-view="large" class="${albumView==='large'?'chosen':''}">Large view<span>${albumView==='large'?'✓':''}</span></button>
           </div>`,
           confirm:'Done',
           onConfirm:()=>{}
         });
-        setTimeout(wireLastDialog,0);
+        d.querySelectorAll('[data-albums-view]').forEach(b=>b.onclick=()=>{G.appState.patch({albumView:b.dataset.albumsView});d.remove()});
         return;
       }
       if(action==='creativity'){
