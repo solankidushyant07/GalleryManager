@@ -1,0 +1,46 @@
+
+.all-media-page{min-height:calc(100vh - var(--bar));background:radial-gradient(circle at 50% 12%,#0e1728 0%,#070b13 52%,#04070c 100%);color:#f8fafc}
+.all-media-header{position:sticky;top:0;z-index:20;padding:8px 16px 8px;background:rgba(7,11,19,.78);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.all-media-nav{display:grid;grid-template-columns:40px 1fr 88px;align-items:center;gap:8px;min-height:40px}
+.all-media-nav h1{margin:0;text-align:center;font-size:22px;line-height:1;font-weight:760;letter-spacing:-.035em}
+.all-media-round,.all-media-more{width:40px;height:40px;border:1px solid rgba(255,255,255,.1);border-radius:50%;background:rgba(255,255,255,.05);color:#e2e8f0;display:grid;place-items:center}
+.all-media-round svg,.all-media-more svg{width:20px;height:20px}
+.all-media-actions{display:flex;justify-content:flex-end;gap:8px}
+.all-media-sort{padding-top:10px}
+.all-media-sort button{display:flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.06);color:#dbe4f0;border-radius:999px;padding:8px 12px;font-size:13px}
+.all-media-sort svg{width:15px;height:15px;color:#94a3b8}.all-media-sort b{color:#94a3b8;font-size:13px}
+.all-media-scroll{height:calc(100vh - var(--bar));overflow:auto;padding:4px 16px 110px;overscroll-behavior-y:contain}
+.all-media-scroll .selection-bar{top:0}
+.all-media-subtitle{text-align:center;color:#94a3b8;font-size:12px;margin:-1px 0 5px}
+.all-media-pull-hint{height:0;overflow:hidden;text-align:center;color:#64748b;font-size:10px;opacity:.65}
+.all-media-inline-search{grid-template-columns:40px 1fr 40px}
+.all-media-inline-search .inline-search-back{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#e2e8f0;display:grid;place-items:center}
+.all-media-inline-search .inline-search-pill{height:40px;border-radius:999px;display:flex;align-items:center;gap:7px;padding:0 8px 0 13px;background:rgba(16,23,38,.78);border:1px solid rgba(255,255,255,.12)}
+.all-media-inline-search .inline-search-cursor{width:2px;height:18px;background:#38bdf8;border-radius:2px;animation:gallery-inline-search-blink 1.05s infinite}
+.all-media-inline-search .inline-search-input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#f1f5f9;font-size:14px}
+.all-media-inline-search .inline-search-input::placeholder{color:#8e9cb5}
+.all-media-inline-search .inline-search-submit,.all-media-inline-search .inline-search-clear{width:30px;height:30px;border:0;background:transparent;color:#cbd5e1;display:grid;place-items:center}
+.all-media-inline-search .inline-search-submit svg{width:17px;height:17px}.all-media-inline-search .inline-search-clear svg{width:15px;height:15px}
+.all-media-inline-search .inline-search-page-more{width:40px;height:40px;border:1px solid rgba(255,255,255,.1);border-radius:50%;background:rgba(255,255,255,.05);color:#e2e8f0;display:grid;place-items:center}
+@keyframes gallery-inline-search-blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* Smooth density gesture: scale follows the fingers during the pinch, then
+   the grid snaps once at release instead of rebuilding on every touchmove. */
+.adaptive-timeline{
+  touch-action:pan-y;
+  --adaptive-pinch-scale:1;
+  --adaptive-pinch-origin:center center;
+  transform:scale(var(--adaptive-pinch-scale));
+  transform-origin:var(--adaptive-pinch-origin);
+  will-change:transform;
+}
+.adaptive-timeline.adaptive-pinch-active{
+  transition:none;
+}
+.adaptive-timeline.adaptive-density-transition{
+  animation:adaptive-density-settle 180ms cubic-bezier(.2,.8,.2,1);
+}
+@keyframes adaptive-density-settle{
+  0%{opacity:.92;transform:scale(.985)}
+  100%{opacity:1;transform:scale(1)}
+}

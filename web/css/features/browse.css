@@ -1,0 +1,53 @@
+
+.browse-page{min-height:calc(100vh - var(--bar));padding:18px 16px 110px;max-width:760px;margin:0 auto;color:#f8fafc}
+.browse-header{position:sticky;top:0;z-index:20;padding:8px 4px 14px;background:rgba(9,12,22,.78);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.browse-title-row{display:flex;align-items:center;justify-content:space-between}
+.browse-title-row h1{margin:0;font-size:30px;line-height:1;font-weight:760;letter-spacing:-.045em}
+.browse-header-actions{display:flex;gap:4px}
+.browse-header-actions button{width:40px;height:40px;border:0;border-radius:50%;background:transparent;color:#cbd5e1;display:grid;place-items:center}
+.browse-header-actions svg{width:22px;height:22px}
+.browse-segmented{display:flex;gap:9px;margin-top:17px}
+.browse-segmented button{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:#94a3b8;padding:9px 17px;border-radius:999px;font-size:13px;font-weight:550}
+.browse-segmented button.active{background:#2563eb;border-color:rgba(96,165,250,.6);color:#fff;box-shadow:0 0 16px rgba(37,99,235,.35)}
+.browse-content{padding:14px 1px 24px}
+.browse-album-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 12px}
+.browse-album-tile{border:0;background:transparent;color:#fff;text-align:left;padding:0;min-width:0}
+.browse-album-cover{display:grid;place-items:center;aspect-ratio:1;border-radius:17px;overflow:hidden;background:rgba(20,29,48,.75);border:1px solid rgba(255,255,255,.09);box-shadow:0 8px 22px rgba(0,0,0,.22)}
+.browse-album-cover img{width:100%;height:100%;object-fit:cover}
+.browse-album-cover svg{width:30px;height:30px;color:#64748b}
+.browse-album-tile strong,.browse-album-tile small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.browse-album-tile strong{margin:8px 2px 0;font-size:13px;font-weight:650}
+.browse-album-tile small{margin:4px 2px 0;color:#718096;font-size:11px}
+.browse-folder-list{display:grid;gap:10px}
+.browse-folder-row{width:100%;display:flex;align-items:center;gap:13px;padding:9px;border:1px solid rgba(255,255,255,.07);border-radius:17px;background:rgba(14,23,49,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#fff;text-align:left}
+.browse-folder-thumb{width:64px;height:64px;flex:0 0 64px;border-radius:13px;overflow:hidden;display:grid;place-items:center;background:#111a2d;border:1px solid rgba(255,255,255,.12)}
+.browse-folder-thumb img{width:100%;height:100%;object-fit:cover}
+.browse-folder-thumb svg{width:27px;height:27px;color:#64748b}
+.browse-folder-copy{min-width:0;flex:1}
+.browse-folder-copy strong,.browse-folder-copy small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.browse-folder-copy strong{font-size:15px;font-weight:650}
+.browse-folder-copy small{font-size:11px;color:#94a3b8;margin-top:4px}
+.browse-folder-chevron{color:#64748b;display:grid;place-items:center;padding-right:4px}
+.browse-folder-chevron svg{width:19px;height:19px}
+@media(max-width:360px){.browse-album-grid{gap:15px 9px}.browse-album-tile strong{font-size:12px}}
+
+.browse-header{position:sticky}
+.browse-overflow-menu{top:57px;right:4px;width:224px}
+.browse-overflow-menu button{font-size:14px}
+
+/* Inline search state: replaces the page search icon while preserving the
+   page's own overflow (three-dot) action in the same header position. */
+.browse-inline-search-row{display:flex;align-items:center;gap:10px;min-height:40px}
+.browse-inline-search-row .inline-search-back{width:40px;height:40px;flex:0 0 40px;border-radius:50%;border:1px solid rgba(255,255,255,.1);background:rgba(24,30,44,.72);color:#e2e8f0;display:grid;place-items:center}
+.browse-inline-search-row .inline-search-back svg{width:20px;height:20px}
+.browse-inline-search-row .inline-search-pill{height:40px;flex:1;min-width:0;border-radius:999px;display:flex;align-items:center;gap:7px;padding:0 8px 0 13px;background:rgba(16,23,38,.78);border:1px solid rgba(255,255,255,.12);box-shadow:inset 0 1px 2px rgba(255,255,255,.04)}
+.browse-inline-search-row .inline-search-cursor{width:2px;height:18px;background:#38bdf8;border-radius:2px;animation:gallery-inline-search-blink 1.05s infinite;flex:0 0 auto}
+.browse-inline-search-row .inline-search-input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#f1f5f9;font-size:14px}
+.browse-inline-search-row .inline-search-input::placeholder{color:#8e9cb5}
+.browse-inline-search-row .inline-search-submit,
+.browse-inline-search-row .inline-search-clear{width:30px;height:30px;flex:0 0 30px;border:0;border-radius:50%;background:transparent;color:#cbd5e1;display:grid;place-items:center}
+.browse-inline-search-row .inline-search-submit svg{width:17px;height:17px}
+.browse-inline-search-row .inline-search-clear svg{width:15px;height:15px}
+.browse-inline-search-row .inline-search-page-more{width:40px;height:40px;flex:0 0 40px;border:0;border-radius:50%;background:transparent;color:#cbd5e1;display:grid;place-items:center}
+.browse-inline-search-row .inline-search-page-more svg{width:22px;height:22px}
+@keyframes gallery-inline-search-blink{0%,100%{opacity:1}50%{opacity:0}}

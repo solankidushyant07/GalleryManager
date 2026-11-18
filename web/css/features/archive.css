@@ -1,0 +1,97 @@
+
+/* Archive screen — visual language derived from the supplied archive references.
+   Status-bar UI is intentionally omitted; the host OS supplies it. */
+.archive-page{background:linear-gradient(180deg,#090d16 0%,#070b11 100%)}
+.archive-header{padding-bottom:8px}
+.archive-controls{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:5px 20px 13px;gap:12px;
+}
+.archive-sort-btn{
+  border:1px solid #232c3d;background:#141b27;color:#dce3ee;
+  border-radius:999px;padding:9px 13px;display:inline-flex;align-items:center;gap:7px;
+  font-size:12px;font-weight:650;
+}
+.archive-sort-btn svg{width:15px;height:15px;color:#9aa6bb}
+.archive-sort-btn b{font-size:13px;color:#9aa6bb;font-weight:500}
+.archive-view-toggle{
+  display:flex;align-items:center;gap:4px;padding:4px;
+  border-radius:999px;background:#121824;border:1px solid #1f293a;
+}
+.archive-view-toggle button{
+  width:40px;height:31px;border:0;border-radius:999px;background:transparent;
+  display:grid;place-items:center;color:#69768d;
+}
+.archive-view-toggle button.active{
+  background:#1b63d9;color:#fff;box-shadow:0 0 12px rgba(27,99,217,.28);
+}
+.archive-view-toggle svg{width:16px;height:16px}
+.archive-content{padding-top:7px}
+.archive-photo-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;
+}
+.archive-photo-card{
+  position:relative;aspect-ratio:1;padding:0;border:0;border-radius:15px;
+  overflow:hidden;background:#182030;box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
+}
+.archive-photo-card img{display:block;width:100%;height:100%;object-fit:cover}
+.archive-photo-card.selected,.archive-album-card.selected{box-shadow:0 0 0 2px #3b82f6,0 6px 20px rgba(0,0,0,.35)}
+.archive-video-badge{
+  position:absolute;right:7px;bottom:7px;width:24px;height:24px;border-radius:50%;
+  display:grid;place-items:center;background:rgba(8,13,21,.7);backdrop-filter:blur(8px);
+  color:#fff;font-size:9px;
+}
+.archive-select-badge{
+  position:absolute;right:7px;top:7px;width:25px;height:25px;border-radius:50%;
+  display:grid;place-items:center;background:#2563eb;color:#fff;font-size:14px;font-weight:800;
+  box-shadow:0 3px 12px rgba(0,0,0,.35);
+}
+.archive-album-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;
+}
+.archive-album-card{
+  position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;
+  min-width:0;padding:8px;border-radius:17px;background:#111622;border:1px solid #192133;
+  color:#fff;
+}
+.archive-album-cover{
+  width:100%;aspect-ratio:1;display:grid;place-items:center;overflow:hidden;border-radius:12px;
+  margin-bottom:7px;background:#1c2438;color:#65738a;
+}
+.archive-album-cover img{width:100%;height:100%;object-fit:cover}
+.archive-album-cover svg{width:32px;height:32px}
+.archive-album-card strong{
+  width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  font-size:12px;font-weight:700;line-height:1.2;
+}
+.archive-album-card small{margin-top:3px;color:#717d93;font-size:10.5px}
+.archive-empty-state{
+  min-height:58vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:20px 30px;
+}
+.archive-empty-icon{
+  width:112px;height:112px;border-radius:50%;display:grid;place-items:center;margin-bottom:23px;
+  background:#111724;border:1px solid rgba(255,255,255,.04);
+  box-shadow:0 12px 36px rgba(0,0,0,.5);
+  color:#59667e;
+}
+.archive-empty-icon svg{width:42px;height:42px}
+.archive-empty-state h2{margin:0 0 9px;font-size:18px;font-weight:700}
+.archive-empty-state p{margin:0;max-width:280px;color:#737f97;font-size:13.5px;line-height:1.55}
+.archive-selection{
+  position:sticky;bottom:9px;z-index:15;margin:0 14px 10px;padding:10px 11px;
+  display:flex;align-items:center;justify-content:flex-end;gap:7px;
+  background:rgba(16,23,37,.94);border:1px solid rgba(255,255,255,.1);
+  border-radius:17px;box-shadow:0 14px 34px rgba(0,0,0,.55);backdrop-filter:blur(18px);
+}
+.archive-selection strong{margin-right:auto;font-size:12px}
+.archive-selection button{
+  border:0;border-radius:11px;padding:7px 10px;background:#253043;color:#fff;
+  font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:4px;
+}
+.archive-selection button:first-of-type{background:#1f66e8}
+.archive-selection svg{width:14px;height:14px}
+@media(max-width:430px){
+  .archive-controls{padding-left:17px;padding-right:17px}
+  .archive-content{padding-left:14px;padding-right:14px}
+}

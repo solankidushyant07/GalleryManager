@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1800" preserveAspectRatio="xMidYMid slice">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#3e79bd"/>
+    <stop offset=".42" stop-color="#86b5df"/>
+    <stop offset=".72" stop-color="#4f7890"/>
+    <stop offset="1" stop-color="#172a32"/>
+  </linearGradient>
+  <radialGradient id="sun" cx=".66" cy=".16" r=".26">
+    <stop offset="0" stop-color="#ffe49a" stop-opacity=".95"/>
+    <stop offset=".22" stop-color="#ffd56e" stop-opacity=".34"/>
+    <stop offset="1" stop-color="#ffd56e" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="mountain" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#b9d4e3"/>
+    <stop offset=".28" stop-color="#66899e"/>
+    <stop offset="1" stop-color="#263f4a"/>
+  </linearGradient>
+  <linearGradient id="mountain2" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#89aabd"/>
+    <stop offset="1" stop-color="#19323a"/>
+  </linearGradient>
+  <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#355746"/>
+    <stop offset="1" stop-color="#0b1d1a"/>
+  </linearGradient>
+  <filter id="soft"><feGaussianBlur stdDeviation="20"/></filter>
+</defs>
+<rect width="1440" height="1800" fill="url(#sky)"/>
+<rect width="1440" height="1800" fill="url(#sun)"/>
+<g opacity=".22" filter="url(#soft)" fill="#fff">
+  <ellipse cx="260" cy="330" rx="260" ry="55"/>
+  <ellipse cx="1120" cy="430" rx="310" ry="70"/>
+  <ellipse cx="760" cy="520" rx="420" ry="55"/>
+</g>
+<path d="M0 740 L185 555 320 665 485 430 660 675 835 500 1010 690 1175 470 1440 730 V1040 H0Z" fill="url(#mountain)"/>
+<path d="M0 825 L220 650 355 750 545 585 715 785 900 615 1080 770 1250 605 1440 790 V1120 H0Z" fill="url(#mountain2)" opacity=".92"/>
+<path d="M0 940 C190 855 350 870 520 945 C720 1030 900 920 1100 885 C1250 858 1350 900 1440 945 V1800 H0Z" fill="url(#ground)"/>
+<g opacity=".52" fill="#17352d">
+  <path d="M0 1030 Q90 945 180 1030 T360 1030 T540 1030 T720 1030 T900 1030 T1080 1030 T1260 1030 T1440 1030 V1800 H0Z"/>
+</g>
+<g fill="#102721" opacity=".8">
+  <path d="M0 1100 l55-125 55 125z M110 1120 l48-115 48 115z M1270 1110 l55-135 55 135z M1370 1130 l35-90 35 90z"/>
+</g>
+<g fill="#fff" opacity=".13">
+  <circle cx="123" cy="270" r="3"/><circle cx="196" cy="360" r="2"/><circle cx="1300" cy="260" r="3"/><circle cx="1180" cy="350" r="2"/>
+</g>
+</svg>

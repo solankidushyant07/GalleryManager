@@ -1,0 +1,186 @@
+.selection-mode-header{
+  position:sticky;top:0;z-index:60;
+  padding:7px 16px 10px;
+  background:rgba(7,11,19,.96);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  color:#fff;
+}
+.selection-mode-row{min-height:45px;display:grid;grid-template-columns:44px 1fr 78px;align-items:center;gap:8px}
+.selection-mode-row>strong{text-align:center;font-size:18px;font-weight:700;letter-spacing:-.02em}
+.selection-double-check{width:42px;height:42px;border:1px solid rgba(255,255,255,.18);border-radius:13px;background:rgba(255,255,255,.035);color:#fff;display:grid;place-items:center;touch-action:manipulation}
+.selection-double-check svg{width:29px;height:29px}
+.selection-cancel{border:0;background:transparent;color:#2997ff;font-size:17px;font-weight:550;text-align:right;padding:9px 0;touch-action:manipulation}
+.selection-mode-subrow{display:flex;justify-content:flex-end;padding-top:2px}
+.selection-all-pill{
+  border:1px solid rgba(255,255,255,.11);border-radius:999px;
+  background:rgba(27,37,59,.92);color:#e2e8f0;padding:7px 16px;
+  font-size:13px;font-weight:550;min-height:38px;touch-action:manipulation;
+}
+.selection-action-sheet{
+  position:fixed;left:0;right:0;bottom:0;z-index:85;
+  padding:10px 12px max(12px,env(safe-area-inset-bottom));
+  background:rgba(9,15,24,.96);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-top:1px solid rgba(255,255,255,.10);
+  border-radius:26px 26px 0 0;
+  box-shadow:0 -14px 38px rgba(0,0,0,.42);
+}
+.selection-action-row{
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+  align-items:start;gap:4px;max-width:760px;margin:auto;min-width:0;
+}
+.selection-action-row-compact{grid-template-columns:repeat(3,minmax(0,1fr));max-width:520px}
+.selection-action-row-album-single,.selection-action-row-album-multi{grid-template-columns:repeat(4,minmax(0,1fr));max-width:620px}
+.selection-action-button{
+  min-width:0;min-height:66px;border:0;border-radius:15px;background:transparent;color:#f8fafc;
+  padding:6px 3px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  font-size:11px;font-weight:520;text-align:center;white-space:nowrap;overflow:hidden;
+}
+.selection-action-button:hover{background:rgba(255,255,255,.055)}
+.selection-action-button:active{transform:scale(.96);background:rgba(255,255,255,.08)}
+.selection-action-button.danger{color:#f8fafc}
+.selection-action-icon{width:28px;height:28px;display:grid;place-items:center;flex:0 0 28px}
+.selection-action-icon svg{width:25px;height:25px}
+.selection-action-button span:last-child{max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.selection-action-button[data-selection-action="more"] .selection-action-icon{border:1.7px solid currentColor;border-radius:50%;width:27px;height:27px}
+.selection-action-button[data-selection-action="more"] .selection-action-icon svg{width:19px;height:19px}
+.selection-more-backdrop{
+  position:fixed;inset:0;z-index:120;background:rgba(0,0,0,.46);
+  display:flex;align-items:flex-end;justify-content:center;
+}
+.selection-more-sheet{
+  width:min(100%,560px);max-height:min(72vh,620px);overflow:auto;
+  padding:8px 14px max(18px,env(safe-area-inset-bottom));
+  background:rgba(12,19,30,.98);border:1px solid rgba(255,255,255,.09);
+  border-radius:28px 28px 0 0;box-shadow:0 -18px 48px rgba(0,0,0,.48);
+}
+.selection-more-handle{width:42px;height:4px;border-radius:999px;background:rgba(255,255,255,.28);margin:2px auto 12px}
+.selection-more-title{display:flex;align-items:center;justify-content:space-between;padding:0 4px 10px;color:#fff}
+.selection-more-title strong{font-size:18px}
+.selection-more-title button{width:34px;height:34px;border:0;border-radius:50%;background:rgba(255,255,255,.07);color:#fff;font-size:23px;line-height:1}
+.selection-more-list{display:grid;gap:5px}
+.selection-more-action{
+  min-height:50px;border:1px solid rgba(255,255,255,.07);border-radius:14px;background:rgba(255,255,255,.045);
+  color:#f8fafc;display:flex;align-items:center;gap:13px;padding:10px 13px;font-size:14px;text-align:left;
+}
+.selection-more-action:active{background:rgba(255,255,255,.09)}
+.selection-more-icon{width:24px;height:24px;display:grid;place-items:center;color:#dbeafe;flex:0 0 24px}
+.selection-more-icon svg{width:22px;height:22px}
+.selection-more-action.danger{color:#ff8793}
+.selection-more-action.danger .selection-more-icon{color:#ff8793}
+@media(max-width:380px){
+  .selection-action-button{font-size:10px;min-height:62px}
+  .selection-action-icon{width:25px;height:25px;flex-basis:25px}
+  .selection-action-icon svg{width:22px;height:22px}
+}
+.selection-page-active .albums-header,
+.selection-page-active .browse-header,
+.selection-page-active .all-media-header,
+.selection-page-active .album-universal-header{display:none}
+.selection-page-active .albums-content,
+.selection-page-active .browse-content{padding-top:8px}
+.albums-tile.selected-collection .albums-tile-cover,
+.browse-album-tile.selected-collection .browse-album-cover,
+.browse-folder-row.selected-collection{
+  border-color:#258cf4;
+  box-shadow:0 0 0 2px rgba(37,140,244,.92),0 8px 22px rgba(0,0,0,.22);
+}
+.albums-tile-cover .collection-select-badge,
+.browse-album-cover .collection-select-badge,
+.browse-folder-thumb .collection-select-badge{
+  position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;
+  background:rgba(0,0,0,.12);border:1.75px solid rgba(255,255,255,.82);color:transparent;display:grid;place-items:center;
+  font-size:14px;font-weight:800;box-shadow:0 2px 7px rgba(0,0,0,.22);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);
+}
+.albums-tile-cover .collection-select-badge.is-selected,
+.browse-album-cover .collection-select-badge.is-selected,
+.browse-folder-thumb .collection-select-badge.is-selected{background:#258cf4;border-color:#258cf4;color:#fff;box-shadow:0 2px 7px rgba(0,0,0,.4)}
+.albums-tile-cover,.browse-album-cover,.browse-folder-thumb{position:relative}
+.selection-touch-target{
+  touch-action:pan-y;
+  -webkit-user-select:none;
+  user-select:none;
+  -webkit-touch-callout:none;
+}
+.selection-touch-target.selection-longpressing{
+  transform:scale(.985);
+  transition:transform 90ms ease-out;
+}
+.media-thumb.selected,.adaptive-media-tile.selected,.album-media-tile.selected{
+  box-shadow:0 0 0 2.5px rgba(37,140,244,.96),0 7px 20px rgba(0,0,0,.25);
+}
+.media-thumb.selected{border-color:#258cf4!important}
+.adaptive-media-tile .adaptive-select-badge,
+.album-media-tile .select-badge,
+.media-thumb .select-badge{
+  position:absolute;width:23px;height:23px;top:7px;right:7px;
+  color:#fff;border:1.75px solid rgba(255,255,255,.82);z-index:4;
+  display:grid;place-items:center;border-radius:50%;font-size:13px;font-weight:800;
+  background:rgba(0,0,0,.12);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);
+  box-sizing:border-box;
+}
+.adaptive-media-tile .adaptive-select-badge.is-selected,
+.album-media-tile .select-badge.is-selected,
+.media-thumb .select-badge.is-selected{
+  background:#258cf4;border-color:#258cf4;box-shadow:0 2px 7px rgba(0,0,0,.35);
+}
+.adaptive-media-tile .adaptive-select-badge.is-unselected,
+.album-media-tile .select-badge.is-unselected,
+.media-thumb .select-badge.is-unselected{color:transparent}
+@media(max-width:760px){
+  .selection-action-row{align-items:flex-start;flex-direction:column}
+  .selection-action-row>strong{padding:2px 2px 0}
+  .selection-action-scroll{width:100%}
+}
+
+.selection-page-active .gm-special-header,
+.selection-page-active .search-page-head,
+.selection-page-active .search-active-bar,
+.selection-page-active .page-head{display:none}
+.favourite-tile.selected-collection .favorite-badge,
+.search-result-card.selected-collection .search-result-image,
+.trash-tile.selected-collection{
+  border-color:#258cf4!important;
+  box-shadow:0 0 0 2px rgba(37,140,244,.9),0 7px 20px rgba(0,0,0,.25);
+}
+.favourite-tile.selected-collection{box-shadow:0 0 0 2px rgba(37,140,244,.9)}
+.favourite-tile{position:relative}
+.favourite-tile .select-badge,
+.search-result-image .collection-select-badge,
+.trash-tile .collection-select-badge{
+  position:absolute;top:7px;right:7px;width:23px;height:23px;border-radius:50%;
+  background:rgba(0,0,0,.12);border:1.75px solid rgba(255,255,255,.82);color:transparent;display:grid;place-items:center;z-index:5;
+  font-size:13px;font-weight:800;box-shadow:0 2px 7px rgba(0,0,0,.22);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);
+}
+.favourite-tile .select-badge.is-selected,
+.search-result-image .collection-select-badge.is-selected,
+.trash-tile .collection-select-badge.is-selected{background:#258cf4;border-color:#258cf4;color:#fff;box-shadow:0 2px 7px rgba(0,0,0,.4)}
+.trash-tile .collection-select-badge{top:7px;right:7px}
+
+/* Selection is a page-level state. The contextual action sheet replaces
+   bottom navigation instead of stacking another bar above it. */
+.selection-state-active{padding-bottom:0!important}
+.selection-state-active .bottom-nav{display:none!important}
+.selection-state-active .selection-action-sheet{
+  bottom:0;
+  padding-bottom:max(16px,env(safe-area-inset-bottom));
+  z-index:80;
+}
+.selection-state-active .albums-fab{display:none!important}
+
+/* Selection mode owns the bottom chrome. Keep the underlying collection
+   scrollable and leave enough breathing room for the contextual sheet. */
+.selection-state-active .screen{padding-bottom:0!important}
+.selection-state-active .selection-action-sheet + *{scroll-margin-bottom:112px}
+.selection-state-active .all-media-scroll,
+.selection-state-active .gm-special-content,
+.selection-state-active .albums-content,
+.selection-state-active .browse-content,
+.selection-state-active .album-universal-page,
+.selection-state-active .page{scroll-padding-bottom:112px}
+.selection-state-active .selection-action-sheet{width:100%;box-sizing:border-box}
+.selection-state-active .selection-action-row{width:100%;box-sizing:border-box}
+@media(max-width:760px){
+  .selection-state-active .selection-action-sheet{padding-left:14px;padding-right:14px}
+}
